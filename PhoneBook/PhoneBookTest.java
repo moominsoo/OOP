@@ -4,7 +4,7 @@ class PhoneBook {
     String name;
     String number;
     String email;
-    PhoneBook(){
+    PhoneBook(String i){
         
     }
 }
