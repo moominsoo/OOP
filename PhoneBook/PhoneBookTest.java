@@ -4,10 +4,12 @@ class PhoneBook {
     String name;
     String number;
     String email;
+    PhoneBook(){
+        
+    }
 }
 
 class PhoneBookManager {
-
 }
 
 public class PhoneBookTest {
