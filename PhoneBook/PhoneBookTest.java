@@ -4,8 +4,8 @@ class PhoneBook {
     String name;
     String number;
     String email;
-    PhoneBook(String i){
-        
+    PhoneBook(String i, String n, String num, String e){
+        ID=i; name=n; number=num; email=e;
     }
 }
 
