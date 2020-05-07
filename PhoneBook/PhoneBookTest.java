@@ -1,6 +1,9 @@
 package PhoneBook;
 class PhoneBook {
-
+    String ID;
+    String name;
+    String number;
+    String email;
 }
 
 class PhoneBookManager {
