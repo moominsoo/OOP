@@ -2,7 +2,6 @@ package PhoneBook;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.List;
 
 class PhoneBook {
     String ID;
@@ -10,7 +9,6 @@ class PhoneBook {
     String number;
     String email;
 
-    PhoneBook(){}
     PhoneBook(String i, String n, String num, String e){
         this.ID=i; this.name=n; this.number=num; this.email=e;
     }
