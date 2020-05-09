@@ -1,5 +1,6 @@
 package PhoneBook;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class PhoneBook {
@@ -55,39 +56,50 @@ public class PhoneBookTest {
         String[] nameData ={};
         String[] numberData = {};
 
-        PhoneBook pb = new PhoneBook();
+        PhoneBookManager pbm = new PhoneBookManager();
         Scanner sc = new Scanner(System.in);
 
-        for (int i=0; i < 20; ++i){
-            insert(nameData[i], numberData[i]);
-        }
+        int input;
+        while(true) { // 프로그램 반복
+            while (true) {  // 입력 예외처리
+                try {
+                    System.out.println("1. 전체 전화번호 표시");
+                    System.out.println("2. 신규 회원 추가");
+                    System.out.println("3. 기존 회원 삭제");
+                    System.out.println("4. 전화번호 수정");
+                    System.out.println("5. 전화번호 검색");
+                    System.out.println("6. 프로그램 종료");
 
-        while(true) {
-        System.out.println("1. 전체 전화번호 표시");
-        System.out.println("2. 신규 회원 추가");
-        System.out.println("3. 기존 회원 삭제");
-        System.out.println("4. 전화번호 수정");
-        System.out.println("5. 전화번호 검색");
-        System.out.println("6. 프로그램 종료");
-
-            int input = sc.nextInt();
-
+                    input = sc.nextInt();
+                    break;
+                } catch (InputMismatchException ime) {  // 숫자가 아닌 다른것 입력 시 다시 입력 받도록 진행
+                    System.out.println("올바른 숫자를 입력하세요!\n");
+                    sc = new Scanner(System.in);
+                }
+            }
             if (input == 1)
-                ;
+                pbm.show();
             else if (input == 2)
-                ;
+                pbm.insert();
             else if (input == 3)
-                ;
+                pbm.delete();
             else if (input == 4)
-                ;
+                pbm.modify();
             else if (input == 5) {
                 System.out.println("1. 관리 번호로 검색");
                 System.out.println("2. 이름으로 검색");
+                input = sc.nextInt();
+                if (input==1)
+                    pbm.findByid();
+                else if (input==2)
+                    pbm.findByname();
             }
             else if (input == 6) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
             }
+            else
+                System.out.println("올바른 숫자를 입력하세요!\n");
         }
     }
 }
