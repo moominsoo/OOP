@@ -26,7 +26,13 @@ class PhoneBookManager {
 
     public void insert(String name, String num, String email) {  // 신규 회원 추가
         String id = Integer.toString(pb_cnt);
-        pb[pb_cnt++] = new PhoneBook(id,name,num,email);
+        try {
+            pb[pb_cnt++] = new PhoneBook(id, name, num, email);
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("전화부 용량 초과!");
+            pb_cnt--;
+        }
     }
 
     public void delete(String id) {  // 관리번호로 삭제
