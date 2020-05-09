@@ -121,13 +121,49 @@ class PhoneBookManager {
     }
 
     public void findByname(String name) { // 이름으로 찾기
-        for (int i=1;i<pb_cnt;i++) {
-            if (name.compareTo(pb[i].ID) == 0)
-                System.out.println(pb[i]);
-            System.out.println("1. 전화번호 수정");
-            System.out.println("2. 전화번호 삭재");
-            System.out.println("3. 검색 종료");
+        String id="";
+        boolean find=false;
 
+        for (int i=1;i<pb_cnt;i++)
+            if (name.compareTo(pb[i].name) == 0) {
+                id=Integer.toString(i);
+                find=true;
+                break;
+            }
+
+        if (find==false)
+            System.out.println("찾는 이름이 없습니다.\n");
+        else {
+            System.out.println("관리 번호 : " + pb[Integer.parseInt(id)].ID + " / 이름 : " + pb[Integer.parseInt(id)].name + " / 전화번호 : " + pb[Integer.parseInt(id)].number + " / 이메일 :" + pb[Integer.parseInt(id)].email+"\n");
+            int input;
+            while (true) {
+                System.out.println("1. 전화번호 수정");
+                System.out.println("2. 전화번호 삭재");
+                System.out.println("3. 검색 종료");
+                while (true) {
+                    try {
+                        System.out.print("\n입력 : ");
+                        input = sc.nextInt();
+                        break;
+                    } catch (InputMismatchException ime) {  // 숫자가 아닌 다른것 입력 시 다시 입력 받도록 진행
+                        System.out.println("올바른 숫자를 입력하세요!\n");
+                        sc = new Scanner(System.in);
+                    }
+                }
+                if (input == 1) {
+                    System.out.println(id + "번 수정");
+                    modify(id);
+                    break;
+                } else if (input == 2) {
+                    System.out.println(id + "번 삭제");
+                    delete(id);
+                    break;
+                } else if (input == 3) {
+                    System.out.println("검색 종료\n");
+                    break;
+                } else
+                    System.out.println("올바른 숫자를 입력하세요!\n");
+            }
         }
     }
 
@@ -244,15 +280,29 @@ public class PhoneBookTest {
                         }
                     }
                     if (input == 1) {
+                        for (int i=0;i<10;i++)
+                            System.out.print("-");
+                        System.out.print("관리 번호로 검색");
+                        for (int i=0;i<10;i++)
+                            System.out.print("-");
+                        System.out.println();
                         sc.nextLine();
-                        System.out.print("\n관리 번호 입력 : ");
+
+                        System.out.print("관리 번호 입력 : ");
                         String id = sc.nextLine();
                         pbm.findByid(id);
                         break;
                     }
                     else if (input == 2) {
+                        for (int i=0;i<10;i++)
+                            System.out.print("-");
+                        System.out.print("이름으로 검색");
+                        for (int i=0;i<10;i++)
+                            System.out.print("-");
+                        System.out.println();
                         sc.nextLine();
-                        System.out.print("\n이름 입력 : ");
+
+                        System.out.print("이름 입력 : ");
                         String name = sc.nextLine();
                         pbm.findByname(name);
                         break;
