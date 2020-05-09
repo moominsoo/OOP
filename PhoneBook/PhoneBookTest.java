@@ -34,21 +34,41 @@ class PhoneBookManager {
         pb[pb_cnt] = new PhoneBook(id,name,num,email);
     }
     public void delete() {  // 관리번호로 삭제
+        String id = sc.nextLine();
 
     }
-    public void modify() { // 기존 회원의 전화번호 변경
-
+    public void modify(int i) { // 기존 회원의 전화번호 변경
+        String num = sc.nextLine();
+        pb[i].number = num;
     }
     public void show() { // 전화번호부 출력
-
+        for (int i=0;i<pb_cnt;i++)
+            System.out.println(pb[i]);
     }
     public void findByid() { // 관리 번호로 찾기
+        System.out.print("\n관리 번호 입력 : ");
+        String id = sc.nextLine();
+        for (int i=0;i<pb_cnt;i++) {
+            if (id.compareTo(pb[i].ID) == 0)
+                System.out.println(pb[i]);
+                System.out.println("1. 전화번호 수정");
+                System.out.println("2. 전화번호 삭재");
+                System.out.println("3. 검색 종료");
 
+        }
     }
     public void findByname() { // 이름으로 찾기
+        System.out.print("\n이름 입력 : ");
+        String name = sc.nextLine();
+        for (int i=0;i<pb_cnt;i++) {
+            if (name.compareTo(pb[i].ID) == 0)
+                System.out.println(pb[i]);
+            System.out.println("1. 전화번호 수정");
+            System.out.println("2. 전화번호 삭재");
+            System.out.println("3. 검색 종료");
 
+        }
     }
-
 }
 
 public class PhoneBookTest {
@@ -66,10 +86,11 @@ public class PhoneBookTest {
                     System.out.println("1. 전체 전화번호 표시");
                     System.out.println("2. 신규 회원 추가");
                     System.out.println("3. 기존 회원 삭제");
-                    System.out.println("4. 전화번호 수정");
+//                    System.out.println("4. 전화번호 수정");
                     System.out.println("5. 전화번호 검색");
                     System.out.println("6. 프로그램 종료");
 
+                    System.out.print("\n입력 : ");
                     input = sc.nextInt();
                     break;
                 } catch (InputMismatchException ime) {  // 숫자가 아닌 다른것 입력 시 다시 입력 받도록 진행
@@ -83,11 +104,12 @@ public class PhoneBookTest {
                 pbm.insert();
             else if (input == 3)
                 pbm.delete();
-            else if (input == 4)
-                pbm.modify();
+//            else if (input == 4)
+//                pbm.modify();
             else if (input == 5) {
                 System.out.println("1. 관리 번호로 검색");
                 System.out.println("2. 이름으로 검색");
+                System.out.print("\n입력 : ");
                 input = sc.nextInt();
                 if (input==1)
                     pbm.findByid();
