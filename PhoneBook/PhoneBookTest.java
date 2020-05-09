@@ -25,12 +25,9 @@ class PhoneBookManager {
         pb_cnt=0;
     }
 
-    public void insert() {  // 신규 회원 추가
+    public void insert(String name, String num, String email) {  // 신규 회원 추가
         pb_cnt++;
         String id = Integer.toString(pb_cnt);
-        String name = sc.nextLine();
-        String num = sc.nextLine();
-        String email = sc.nextLine();
         pb[pb_cnt] = new PhoneBook(id,name,num,email);
     }
     public void delete() {  // 관리번호로 삭제
@@ -73,11 +70,16 @@ class PhoneBookManager {
 
 public class PhoneBookTest {
     public static void main(String[] args) {
-        String[] nameData ={};
-        String[] numberData = {};
-
         PhoneBookManager pbm = new PhoneBookManager();
         Scanner sc = new Scanner(System.in);
+
+        String[] nameData ={"MGBRI","SVZSZ","VHJMG","TTARA","MZLQJ","YTLNZ","XMFSC","BBAHD","PWUMM","OLMST","GJHUX","PJXRQ","HZBOH","IZNCD","BRKRB","RZPYU","KIKQW","PAWVH","KCSXQ","FCJIE"};
+        String[] numberData = {"017-4631-1167","016-964-7215","013-9122-7752","014-2854-2748","019-3371-6737","011-9485-1060","016-3717-6668","019-7079-5734","017-8682-3018","019-4199-3540","010-8424-2485","016-6384-655","019-8708-1824","010-8803-1940","014-309-6233","019-8661-8255","010-5618-8642","011-6836-7177","011-1306-35","013-8942-7379"};
+        String[] emailData = {"apple@yahoo.com","zet@naver.com","pink@naver.com","pepper@naver.com","air@naver.com","yellow@gmail.com","drop@naver.com","coffee@gmail.com","nine@yahoo.com","friday@gmail.com","elephant@yahoo.com","rabbit@naver.com","blue@naver.com","white@naver.com","black@naver.com","queen@gmail.com","nick@naver.com","simple@gmail.com","zoe@yahoo.com","kdney@gmail.com"};
+        // 미리 만들어 둔 데이터 20개
+
+        for (int i=0;i<20;i++)
+            pbm.insert(nameData[i],numberData[i],emailData[i]);
 
         int input;
         while(true) { // 프로그램 반복
@@ -99,9 +101,14 @@ public class PhoneBookTest {
                 }
             }
             if (input == 1)
+
                 pbm.show();
-            else if (input == 2)
-                pbm.insert();
+            else if (input == 2) {
+                String name = sc.nextLine();
+                String num = sc.nextLine();
+                String email = sc.nextLine();
+                pbm.insert(name,num,email);
+            }
             else if (input == 3)
                 pbm.delete();
 //            else if (input == 4)
