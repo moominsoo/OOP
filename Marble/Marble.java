@@ -12,27 +12,26 @@ class City {
     String name;
     String owner;
     int price;
-    String[] room = new String[2];
+    String[] room;
     City(){
-        String name;
-        String owner = "empty";
-        int price = 300;
-        String[] room = new String[2];
+        this.name=""; this.owner = "empty"; this.price = 300; this.room = new String[2];
+    }
+    City(String n){
+        this.name=n; this.owner="empty"; this.price=300; this.room=new String[2];
     }
 
 }
 
 class Game {
     City[] city;
-    String[] cityname = new String[10];
+    String[] cityname = {"START","Seoul","Tokyo","Sydney","LA","Cairo","Phuket","New delhi","Hanoi","Paris"};
 
     Game() {
-        city=new City[10];
-        String[] cityname = {"START","Seoul","Tokyo","Sydney","LA","Cairo","Phuket","New delhi","Hanoi","Paris"};
+        this.city=new City[10];
     }
     void cityinput(){
         for(int i=0; i<10; i++)
-            city[i].name=cityname[i];
+            city[i] = new City(cityname[i]);
     }
 }
 
