@@ -30,6 +30,7 @@ class City {
 class Game {
     City[] city;
     int dice;
+    static int pay=0;
 
     String[] cityname = {"START","Seoul","Tokyo","Sydney","LA","Cairo","Phuket","New delhi","Hanoi","Paris"};
 
@@ -64,6 +65,13 @@ class Game {
     }
 
     void bulid(Player p) {
+
+        if (pay!=0) {
+            p.balance += pay;
+            pay=0;
+//            System.out.println("Player "+p.name+"'s balance is "+p.balance);
+        }
+
         if (city[p.loc].owner.equals("empty")) {
             if (p.balance>=300) {
                 city[p.loc].owner = p.name;
@@ -73,21 +81,32 @@ class Game {
                 // player 1’s balance is 4700.
             }
             else {
-                ;
+                System.out.println("Can't buy "+city[p.loc].name);
+                //can’t buy Seoul
+                System.out.println("Player "+p.name+"'s balance is "+p.balance);
             }
         }
-        else if (!city[p.loc].owner.equals(p.name)) {// 내 땅이 아니면 통행료 지불
-            ;
+        else if (city[p.loc].owner.equals(p.name))
+            System.out.println("Player "+p.name+"'s balance is "+p.balance);
+        else if (city[p.loc].owner.equals("None"))
+            System.out.println("Player "+p.name+"'s balance is "+p.balance);
+        else { // 내 땅이 아니면 통행료 지불
+            toll(p);
         }
-
     }
 
-//    void toll(int i){
-//        if ("p1".compareTo(city[i].owner) == 0){
-//            p1.balance+=600;
-//            p2.balance-=600;
-//        }
-//    }
+    void toll(Player p){
+        System.out.println("LUCKY! Opponent get 600 MONEY!!");
+        p.balance-=600;
+        pay=600;
+        if (p.balance<0) {
+            System.out.println("Player "+p.name+" bankruptcy!");
+            System.out.println("GAME OVER");
+            System.exit(0);
+        }
+        else
+            System.out.println("Player "+p.name+"'s balance is "+p.balance);
+    }
 
 }
 
@@ -111,5 +130,13 @@ public class Marble {
             g.bulid(p2);
             System.out.println();
         }
+        if (p1.balance>p2.balance)
+            System.out.println("Winner is Player 1!");
+        else if (p1.balance<p2.balance)
+            System.out.println("Winner is Player 2!");
+        else
+            System.out.println("DRAW");
+
+        System.out.println("GAME OVER");
     }
 }
