@@ -51,6 +51,11 @@ class PhoneBookManager {
                 System.out.print("관리 번호 입력 : ");
                 id = sc.nextLine();
             }
+            catch (NumberFormatException e) {
+                System.out.println("올바른 숫자를 입력하세요!");
+                System.out.print("관리 번호 입력 : ");
+                id = sc.nextLine();
+            }
         }
     }
 
@@ -73,6 +78,11 @@ class PhoneBookManager {
                 System.out.print("관리 번호 입력 : ");
                 id = sc.nextLine();
             }
+            catch (NumberFormatException e) {
+                System.out.println("올바른 숫자를 입력하세요!");
+                System.out.print("관리 번호 입력 : ");
+                id = sc.nextLine();
+            }
         }
     }
 
@@ -87,6 +97,11 @@ class PhoneBookManager {
                 break;
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("없는 관리 번호 입니다! 다시 입력하세요");
+                System.out.print("관리 번호 입력 : ");
+                id = sc.nextLine();
+            }
+            catch (NumberFormatException e) {
+                System.out.println("올바른 숫자를 입력하세요!");
                 System.out.print("관리 번호 입력 : ");
                 id = sc.nextLine();
             }
