@@ -121,7 +121,13 @@ public class Marble {
         int turn = 30;
         for (int i=0;i<turn;i++)
         {
-            System.out.println("Turn "+(i+1));
+            for (int j=0;j<15;j++)
+                System.out.print("-");
+            System.out.print("Turn "+(i+1));
+            for (int j=0;j<15;j++)
+                System.out.print("-");
+            System.out.println();
+
             g.move(p1);
             g.bulid(p1);
             System.out.println();
