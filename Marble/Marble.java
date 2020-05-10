@@ -1,4 +1,7 @@
 package Marble;
+
+import java.util.Arrays;
+
 class Player {
     static int cnt=0; // 플레이어 수
     String name;
@@ -17,12 +20,10 @@ class City {
     String owner;
     int price;
     String[] room;
-//    City(){
-//        this.name=""; this.owner = "empty"; this.price = 300; this.room = new String[2];
-//    }
+
     City(String n){
-        this.name=n; this.owner="empty"; this.price=300; this.room=new String[2];
-        room[0]="";room[1]="";
+        this.name=n; this.owner="empty"; this.price=300; this.room=new String[Player.cnt];
+        Arrays.fill(room,"");
     }
 
 }
@@ -69,7 +70,6 @@ class Game {
         if (pay!=0) {
             p.balance += pay;
             pay=0;
-//            System.out.println("Player "+p.name+"'s balance is "+p.balance);
         }
 
         if (city[p.loc].owner.equals("empty")) {
@@ -78,11 +78,9 @@ class Game {
                 System.out.println("Player "+p.name+" buys "+city[p.loc].name);
                 p.balance-=city[p.loc].price;
                 System.out.println("Player "+p.name+"'s balance is "+p.balance);
-                // player 1’s balance is 4700.
             }
             else {
                 System.out.println("Can't buy "+city[p.loc].name);
-                //can’t buy Seoul
                 System.out.println("Player "+p.name+"'s balance is "+p.balance);
             }
         }
@@ -112,7 +110,7 @@ class Game {
 
 public class Marble {
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
         Player p1 = new Player();
         Player p2 = new Player();
         Game g = new Game();
