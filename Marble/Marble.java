@@ -24,22 +24,30 @@ class City {
 
 class Game {
     City[] city;
+    int dice = 0;
+    Player p1; Player p2;
     String[] cityname = {"START","Seoul","Tokyo","Sydney","LA","Cairo","Phuket","New delhi","Hanoi","Paris"};
 
     Game() {
         this.city=new City[10];
+        this.p1 = new Player();
+        this.p2 = new Player();
     }
     void cityinput(){
         for(int i=0; i<10; i++)
             city[i] = new City(cityname[i]);
+    }
+    void toll(int i){
+        if ("p1".compareTo(city[i].owner) == 0){
+            p1.balance+=600;
+            p2.balance-=600;
+        }
     }
 }
 
 public class Marble {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        Player p1 = new Player();
-        Player p2 = new Player();
         Game g = new Game();
         g.cityinput();
 
